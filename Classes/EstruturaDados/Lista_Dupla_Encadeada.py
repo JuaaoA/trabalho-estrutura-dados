@@ -136,18 +136,128 @@ class DoublyLinkedListIterator:
         self.size += 1
         return True
 
-        pass
+
     def elimNode(self): # elimina Node sob it e it avanca p/ prox Node
-        pass
+        
+        # Caso o iterator esteja no primeiro node
+        if (self.iterator == self.firstNode):
+            
+            # Caso o iterator também seja o ultimo
+            if (self.iterator == self.lastNode):
+
+                # Apontar todos para nada
+                self.lastNode = None
+                self.iterator = None
+                self.firstNode = None
+            
+            # Se não, significa que possui mais de um nó na lista
+            else:
+
+                # O primeiro nó será o proximo
+                self.firstNode = self.firstNode.nextNode
+
+                # Isolar nó
+                self.iterator.nextNode = None
+
+                # Iterador apontará para o novo primeiro
+                self.iterator = self.firstNode
+        
+        # Iterator não está no primeiro node
+        else:
+
+            # Pegar node anterior
+            anterior =  self.iterator.antNode
+
+            # Caso o iterator seja o ultimo nó
+            if (self.iterator == self.lastNode):
+                
+                # Não definir um próximo ao ultimo nó
+                anterior.nextNode = None
+
+                # Definir o anterior como ultimo nó
+                self.lastNode = anterior
+
+                # Isonar o antigo ultimo nó
+                self.iterator.nextNode = None
+                self.iterator.antNode = None
+
+                # Indefinir o iterator
+                self.iterator = None
+            
+            # Se não, o iterador está dentro da lista
+            else:
+
+                # Definir o próximo do anterior o proximo do iterator
+                anterior.nextNode = self.iterator.nextNode
+
+                # Guardar o nó que vai ser eliminado
+                anterior = self.iterator
+
+                # Definir o iterador no próximo nó
+                self.iterator = self.iterator.nextNode
+
+                # Isolar o nó eliminado
+                anterior.nextNode = None
+                anterior.antNode = None
+            
+            # Diminuir tamanho da lista
+            self.size = self.size - 1
+
+            return True
+
+
     def first_Node(self): # coloca o it sobre o primeiro Node da Lista
-        pass
+        self.iterator = self.firstNode
+        return True
+    
     def last_Node(self): # coloca o iterador sobre o útlimo Node da Lista
-        pass
+        self.iterator = self.lastNode
+        return True
+    
     def nextNode(self): # avança it uma posição para frente. Se it no lastNode , it=None
-        pass
+        if (self.iterator):
+            self.iterator = self.iterator.nextNode
+        return True
+    
     def antNode(self): # avança it uma posição para trás. Se it no firstNode, it=None
-        pass
+        if (self.iterator):
+
+            if (self.iterator.antNode != None):
+                self.iterator = self.iterator.antNode
+            else:
+                self.iterator = None
+            
+        return True
+            
     def posNode(self, position): # poe it em <=1 pos <=size, senao it=None
-        pass
+        # Caso a posição esteja dentro do tamanho do node
+        if (position > 0 and position <= self.size):
+
+            # Variável contadora
+            i = 1
+
+            # Começar com o iterador no primeiro nó
+            self.iterator = self.first_Node()
+
+            # Enquanto o contador não chega na posição indicada
+            while (i < position):
+                
+                # Caso o proximo nó não esteja vazio
+                if (self.iterator.nextNode != None):
+
+                    # Proximo nó
+                    self.iterator = self.iterator.nextNode
+                    
+                    # Aumentar em um a posição
+                    i += 1
+        
+        # Caso a posição esteja fora do node
+        else:
+
+            # Deixar o iterator vazio
+            self.iterator = None
+        
+
     def undefinedIterator(self): # True se o it =None e False o contrario
-        pass
+        # Faz mais sentido retornar direto
+        return not (self.iterator == None)
