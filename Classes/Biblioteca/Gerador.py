@@ -94,4 +94,4 @@ def GetSobrenomes():
         ]
 
 def GerarNomeAleatorio():
-    random.choice(GetNomes()) + " " + random.choice(GetSobrenomes())
+    return random.choice(GetNomes()) + " " + random.choice(GetSobrenomes())

@@ -94,4 +94,31 @@ class ArrayQueue:
             walk = (1 + walk) % len(old)         # use old size as modulus
         self._first = 0                        # front has been realigned
 
+    # Feita para criar uma copia da fila
+    def criar_copia(self):
+
+        # Criar auxiliar
+        aux = ArrayQueue()
+
+        # Colocar dados no auxiliar enquanto não esvazia
+        while not (self.is_empty()):
+            
+            # Tirar da fila e colocar no auxiliar
+            aux.enqueue(self.dequeue())
+
+        # Por fim, colocar tudo de volta e numa variavel de copia
+        copia = ArrayQueue()
+
+        while not (aux.is_empty()):
+
+            # Guardar em uma variável o valor tirado de aux
+            retirado = aux.dequeue()
+
+            # Colocar o valor de volta e na copia
+            copia.enqueue(retirado)
+            self.enqueue(retirado)
+        
+        # Retornar a copia
+        return copia
+            
 

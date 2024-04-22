@@ -75,7 +75,34 @@ class ArrayStack:
       return None
     else:
       return self._data.pop()               # remove last item from list
+  
+  def criar_copia(self):
+    # Criar uma pilha auxiliar
+    aux = ArrayStack()
 
+    # Pegar todos os dados dessa pilha e colocar no aux
+    while not (self.is_empty()):
+        
+      # O aux ficará com os dados inversos
+      aux.push(self.pop())
+    
+    # Como o aux ficará inverso, ele será passado para a copia e para a classe
+      
+    # Criar pilha cópia
+    copia = ArrayStack()
+
+    while  not (aux.is_empty()):
+       
+      # Guardar o retirado numa variável
+      retirado = aux.pop()
+
+      # Colocar o dado retirado na copia e original
+      copia.push(retirado)
+      self.push(retirado)
+    
+    # Por fim, Retornar a copia
+    return copia
+    
 
 if __name__ == '__main__':
 

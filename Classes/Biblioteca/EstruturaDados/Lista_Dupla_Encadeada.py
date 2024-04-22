@@ -237,7 +237,7 @@ class Lista_Dupla_Encadeada:
             i = 1
 
             # Começar com o iterador no primeiro nó
-            self.iterator = self.first_Node()
+            self.first_Node()
 
             # Enquanto o contador não chega na posição indicada
             while (i < position):
