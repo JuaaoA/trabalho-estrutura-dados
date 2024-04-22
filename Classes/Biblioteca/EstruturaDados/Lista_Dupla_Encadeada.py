@@ -9,7 +9,7 @@ class IteratorNode:
 
         pass
 
-class DoublyLinkedListIterator:
+class Lista_Dupla_Encadeada:
     # métodos ou funções que manipulam o comportamento do objeto
     def __init__(self, data, nextNode=None):
         # atributos, propriedades ou estados
